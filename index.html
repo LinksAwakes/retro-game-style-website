@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome to my game!</title>
+    <title>!Welcome to my game!</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script>
       document.addEventListener('DOMContentLoaded', (event) => {
         const header = document.querySelector('header h1');
-        const colors = ['red', 'green', 'blue', 'yellow', 'purple']; // 五种颜色
+        const colors = ['red', 'green', 'blue', 'yellow', 'purple']; // Five colors
         let colorIndex = 0;
 
         function changeColor() {
@@ -15,21 +15,34 @@
           colorIndex = (colorIndex + 1) % colors.length;
         }
 
-        setInterval(changeColor, 100); // 每1000毫秒（1秒）更改一次颜色
+        setInterval(changeColor, 100); // Change color every 1000 milliseconds (1 second)
       });
     </script>
 </head>
 <body>
-    <header>
-        <h1>Welcome to my game!</h1>
-    </header>
-    <div class="video-container">
-        <video controls>
-            <source src="MEEEEEEEEEEEEEEEE.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+    <div class="body-wrapper">
+        <header>
+            <h1>! Welcome to my game !</h1>
+        </header>
+        <div class="border-top">
+            <div class="color-stripe red"></div>
+            <div class="color-stripe orange"></div>
+            <div class="color-stripe yellow"></div>
+            <div class="color-stripe green"></div>
+            <div class="color-stripe blue"></div>
+        </div>
+        
+        <div class="video-container">
+            <video controls>
+                <source src="MEEEEEEEEEEEEEEEE.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
     </div>
 </body>
 </html>
+
+
+
 
 

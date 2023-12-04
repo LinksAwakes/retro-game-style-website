@@ -4,32 +4,72 @@
 }
 
 html, body {
-    height: 100%; /* Make sure the html and body cover the full height of the window */
+    height: 100%;
     margin: 0;
     padding: 0;
-    display: flex; /* Enables flexbox */
-    justify-content: center; /* Centers horizontally */
-    align-items: center; /* Centers vertically */
-    background-color: #acacac; /* Adjust the background color if needed */
-    color: #ffffff; /* This sets the text color */
-    font-family: 'Bone-Regular', Arial, sans-serif;
+    background-color: #000000; /* Gray background to create the border effect */
+    box-sizing: border-box;
+}
+
+.body-wrapper {
+    background-color: rgb(177, 177, 177); /* Content's background color */
+    width: calc(100% - 100px); /* Subtract the width of the left and right borders */
+    height: calc(100% - 60px); /* Subtract the height of the top and bottom borders */
+    padding: 10px; /* This will act as the border around the content */
+    margin-top: 30px; /* Increase this value to push the element down */
+    margin-left: auto; /* Keep the container centered horizontally */
+    margin-right: auto; /* Keep the container centered horizontally */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box; /* Include padding in the width and height */
+}
+
+.border-top {
+    width: 50%;
+    height: 20px; /* Adjust the height of the color stripe as needed */
+    display: flex;
+    margin-top: 0px; /* 调整条纹与标题之间的距离 */
+}
+
+.color-stripe {
+    height: 100%;
+    flex-grow: 1;
+}
+
+.red { background-color: #FF0000; }
+.orange { background-color: #FFA500; }
+.yellow { background-color: #FFFF00; }
+.green { background-color: #008000; }
+.blue { background-color: #0000FF; }
+
+header {
+    text-align: center;
+    width: 100%;
 }
 
 header h1 {
-    font-size: 3em; /* Adjust the font size as needed */
-    position: absolute; /* Take it out of the flexbox flow */
-    top: 20px; /* Position it at the top */
-    left: 50%; /* Center horizontally */
-    transform: translateX(-50%); /* Adjust the positioning */
+    font-family: 'Bone-Regular', Arial, sans-serif;
+    font-size: 3.5em;
+    margin-top: -30px; /* 增加或减少这个值来调整标题距离页面顶部的距离 */
+    margin-bottom: 40px; /* 增加或减少这个值来调整标题与下方彩色条纹之间的距离 */
+    color: white;
+    white-space: nowrap;
 }
 
 .video-container {
     width: 536px; /* Set the width of the video container to match video resolution */
     height: 480px; /* Set the height of the video container to match video resolution */
+    border: 10px solid #ffffff;
+    margin-top: 20px; /* Space between the color stripes and the video */
 }
 
 video {
-    width: 100%; /* Make video take up full width of the container */
-    height: auto; /* Adjust height automatically to keep aspect ratio */
+    width: 100%;
+    height: auto;
 }
+
+
+
 
