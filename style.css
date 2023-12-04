@@ -1,0 +1,35 @@
+@font-face {
+    font-family: 'Bone-Regular';
+    src: url('Bone-Regular.ttf') format('truetype');
+}
+
+html, body {
+    height: 100%; /* Make sure the html and body cover the full height of the window */
+    margin: 0;
+    padding: 0;
+    display: flex; /* Enables flexbox */
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    background-color: #acacac; /* Adjust the background color if needed */
+    color: #ffffff; /* This sets the text color */
+    font-family: 'Bone-Regular', Arial, sans-serif;
+}
+
+header h1 {
+    font-size: 3em; /* Adjust the font size as needed */
+    position: absolute; /* Take it out of the flexbox flow */
+    top: 20px; /* Position it at the top */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust the positioning */
+}
+
+.video-container {
+    width: 536px; /* Set the width of the video container to match video resolution */
+    height: 480px; /* Set the height of the video container to match video resolution */
+}
+
+video {
+    width: 100%; /* Make video take up full width of the container */
+    height: auto; /* Adjust height automatically to keep aspect ratio */
+}
+

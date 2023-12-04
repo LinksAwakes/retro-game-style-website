@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to my game!</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script>
+      document.addEventListener('DOMContentLoaded', (event) => {
+        const header = document.querySelector('header h1');
+        const colors = ['red', 'green', 'blue', 'yellow', 'purple']; // 五种颜色
+        let colorIndex = 0;
+
+        function changeColor() {
+          header.style.color = colors[colorIndex];
+          colorIndex = (colorIndex + 1) % colors.length;
+        }
+
+        setInterval(changeColor, 100); // 每1000毫秒（1秒）更改一次颜色
+      });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Welcome to my game!</h1>
+    </header>
+    <div class="video-container">
+        <video controls>
+            <source src="MEEEEEEEEEEEEEEEE.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</body>
+</html>
+
+
