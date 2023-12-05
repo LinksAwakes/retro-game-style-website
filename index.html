@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>!Welcome to my game!</title>
+    <title>Welcome to my game!</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script>
       document.addEventListener('DOMContentLoaded', (event) => {
@@ -15,14 +15,26 @@
           colorIndex = (colorIndex + 1) % colors.length;
         }
 
-        setInterval(changeColor, 100); // Change color every 1000 milliseconds (1 second)
+        setInterval(changeColor, 1000); // Change color every 1000 milliseconds (1 second)
+
+        // Initialize date and time
+        updateDateTime();
+        setInterval(updateDateTime, 1000); // Update time every 1000 milliseconds (1 second)
       });
+
+    function updateDateTime() {
+        var now = new Date();
+        var time = now.toLocaleTimeString(); // 获取时间字符串
+        var date = now.toLocaleDateString(); // 获取日期字符串
+        document.getElementById("time").textContent = time;
+        document.getElementById("date").textContent = date;
+}
     </script>
 </head>
 <body>
     <div class="body-wrapper">
         <header>
-            <h1>! Welcome to my game !</h1>
+            <h1>Welcome to my game!</h1>
         </header>
         <div class="border-top">
             <div class="color-stripe red"></div>
@@ -31,18 +43,19 @@
             <div class="color-stripe green"></div>
             <div class="color-stripe blue"></div>
         </div>
-        
+        <div id="time">
+            <!-- 时间将在这里显示 -->
+        </div>
+        <div id="date">
+            <!-- 日期将在这里显示 -->
+        </div>
         <div class="video-container">
             <video autoplay loop muted playsinline>
                 <source src="MEEEEEEEEEEEEEEEE.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
+            <img src="kuang_heibai.png" alt="Overlay" class="video-overlay">
         </div>
     </div>
 </body>
 </html>
-
-
-
-
-

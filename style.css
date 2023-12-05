@@ -12,7 +12,7 @@ html, body {
 }
 
 .body-wrapper {
-    background-color: rgb(177, 177, 177); /* Content's background color */
+    background-color: rgb(144, 34, 34); /* Content's background color */
     width: calc(100% - 100px); /* Subtract the width of the left and right borders */
     height: calc(100% - 60px); /* Subtract the height of the top and bottom borders */
     padding: 10px; /* This will act as the border around the content */
@@ -39,12 +39,6 @@ html, body {
     flex-grow: 1;
 }
 
-.red { background-color: #FF0000; }
-.orange { background-color: #FFA500; }
-.yellow { background-color: #FFFF00; }
-.green { background-color: #008000; }
-.blue { background-color: #0000FF; }
-
 header {
     text-align: center;
     width: 100%;
@@ -53,17 +47,18 @@ header {
 header h1 {
     font-family: 'Bone-Regular', Arial, sans-serif;
     font-size: 3.5em;
-    margin-top: -30px; /* 增加或减少这个值来调整标题距离页面顶部的距离 */
+    margin-top: -70px; /* 增加或减少这个值来调整标题距离页面顶部的距离 */
     margin-bottom: 40px; /* 增加或减少这个值来调整标题与下方彩色条纹之间的距离 */
     color: white;
     white-space: nowrap;
+    animation: brightness 1s infinite alternate;
 }
 
 .video-container {
     width: 536px; /* Set the width of the video container to match video resolution */
     height: 480px; /* Set the height of the video container to match video resolution */
-    border: 10px solid #ffffff;
-    margin-top: 20px; /* Space between the color stripes and the video */
+    border: 10px solid #000000;
+    margin-top: 50px; /* Space between the color stripes and the video */
 }
 
 video {
@@ -71,16 +66,78 @@ video {
     height: auto;
 }
 
-@keyframes backgroundAnimation {
-    0% { background-color: #88cc88; }
-    25% { background-color: #8888cc; }
-    50% { background-color: #cc8888; }
-    75% { background-color: #88cccc; }
-    100% { background-color: #cc88cc; }
+.video-wrapper {
+    position: relative; /* 使子元素可以相对于此元素绝对定位 */
+    width: 536px; /* 应与视频大小匹配 */
+    height: 480px; /* 应与视频大小匹配 */
+}
+
+.video-overlay {
+    position: absolute;
+    top: 148px;
+    left: 25%;
+    width: 50%;
+    height: 100%; /* 这将确保覆盖层覆盖整个视频区域 */
+    pointer-events: none; /* 这将确保可以点击或交互覆盖层下面的视频 */
+    z-index: 9999; /* 足够高以确保它在顶层 */
+}
+
+  @keyframes brightness {
+    0%, 100% {
+      filter: brightness(30%); /* 正常亮度 */
+    }
+    50% {
+      filter: brightness(150%); /* 增加亮度 */
+    }
   }
-  
+
+  #time, #date {
+    position: fixed;
+    color: rgb(255, 255, 255); /* 设置文本颜色 */
+    font-size: 45px; /* 设置字体大小 */
+    background-color: rgba(0, 0, 0, 0); /* 背景颜色，提高可读性 */
+    padding: 20px; /* 内边距 */
+    border-radius: 5px; /* 圆角边框 */
+    z-index: 1000; /* 确保它在最上层 */
+    font-family: 'Bone-Regular';
+}
+
+#time {
+    left: 235px;
+    bottom: 90px; /* 增加这个值以提高时间元素的位置 */
+}
+
+#date {
+    left: 170px;
+    bottom: 30px; /* 保持或减少这个值以降低日期元素的位置 */
+}
+
+
 
   
+  /* 以16:9的宽高比为例 */
+.container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw; /* 视口宽度的90% */
+    height: 50.625vw; /* 宽度的56.25% (16:9的宽高比) */
+    max-width: 1600px; /* 最大宽度 */
+    max-height: 900px; /* 最大高度对应16:9比例 */
+    aspect-ratio: 16 / 9; /* 设置容器宽高比 */
+    background: rgb(0, 0, 0); /* 背景颜色 */
+    overflow: hidden; /* 隐藏溢出的内容 */
+}
+
+/* 响应小屏幕 */
+@media (max-aspect-ratio: 16/9) {
+    .container {
+        width: 177.77vh; /* 高度的177.77% (9:16的宽高比) */
+        height: 100vh;
+    }
+}
+
 
 
 
