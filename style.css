@@ -24,6 +24,7 @@ html, body {
     justify-content: center;
     align-items: center;
     box-sizing: border-box; /* Include padding in the width and height */
+    animation: backgroundAnimation 10s infinite alternate;
 }
 
 .border-top {
@@ -69,6 +70,17 @@ video {
     width: 100%;
     height: auto;
 }
+
+@keyframes backgroundAnimation {
+    0% { background-color: #88cc88; }
+    25% { background-color: #8888cc; }
+    50% { background-color: #cc8888; }
+    75% { background-color: #88cccc; }
+    100% { background-color: #cc88cc; }
+  }
+  
+
+  
 
 
 
