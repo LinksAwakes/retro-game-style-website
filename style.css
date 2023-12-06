@@ -12,7 +12,7 @@ html, body {
 }
 
 .body-wrapper {
-    background-color: rgb(144, 34, 34); /* Content's background color */
+    background-color: #8d2020; /* Content's background color */
     width: calc(100% - 100px); /* Subtract the width of the left and right borders */
     height: calc(100% - 60px); /* Subtract the height of the top and bottom borders */
     padding: 10px; /* This will act as the border around the content */
@@ -113,6 +113,49 @@ video {
     bottom: 30px; /* 保持或减少这个值以降低日期元素的位置 */
 }
 
+.color-buttons {
+    /* 按钮容器样式，根据需要进行调整 */
+    position: absolute;
+    bottom: 50px;
+    right: 80px;
+    z-index: 9000;
+}
+
+.color-button {
+    width: 50px; /* 按钮宽度 */
+    height: 50px; /* 按钮高度 */
+    border: 10px solid black;
+    margin: 8px; /*按钮间距*/
+    cursor: pointer;
+}
+
+.color-button:active {
+    transform: scale(0.9); /* 按钮被按下时缩小 */
+}
+
+#user-actions-log {
+    position: fixed;
+    left: 50px;
+    top: 30px;
+    color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0); /* 轻微透明的背景色 */
+    padding: 30px;
+    border-radius: 5px;
+    font-family: 'Bone-Regular';
+    font-size: 25px;
+    width: 300px; /* 设置文本框的宽度 */
+    max-height: 200px;
+    z-index: 1000; /* 确保在最上层 */
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+.fade-out {
+    animation: fadeOut 1s ease-out forwards;
+}
 
 
   
