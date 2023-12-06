@@ -3,6 +3,14 @@
     src: url('Bone-Regular.ttf') format('truetype');
 }
 
+html {
+    cursor: url('m1.png'), auto;
+}
+
+a:hover {
+    cursor: url('m2.png'), pointer;
+}
+
 html, body {
     height: 100%;
     margin: 0;
