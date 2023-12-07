@@ -8,7 +8,7 @@
 <body>
     <div class="body-wrapper">
         <header>
-            <h1>Welcome to my game!</h1>
+            <h1>Welcome to my game !</h1>
         </header>
         <div class="border-top">
             <div class="color-stripe red"></div>
@@ -28,17 +28,29 @@
         </div>        
         <div class="color-buttons">
             <button class="color-button" style="background-color: #8d2020;" data-color="#8d2020"></button>
-            <button class="color-button" style="background-color: #838383;" data-color="#838383"></button>
-            <button class="color-button" style="background-color: #3f536e;" data-color="#3f536e"></button>
             <button class="color-button" style="background-color: #576e54;" data-color="#576e54"></button>
+            <button class="color-button" style="background-color: #3f536e;" data-color="#3f536e"></button>
             <button class="color-button" style="background-color: #695176;" data-color="#695176"></button>
+            <button class="color-button" style="background-color: #838383;" data-color="#838383"></button>
         </div>
+        <div class="custom-buttons">
+            <button id="helpButton"><img src="help.png" alt="帮助"></button>
+            <button id="closeButton"><img src="close.png" alt="关闭"></button>
+        </div>
+        <div id="helpText"></div> <!-- 帮助文本显示区域 -->
         <div class="video-container">
-            <video autoplay loop muted playsinline>
+            <video id="myVideo" autoplay loop muted playsinline>
                 <source src="MEEEEEEEEEEEEEEEE.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
             <img src="kuang_heibai.png" alt="Overlay" class="video-overlay">
+            <!-- 视频控制按钮 -->
+            <!-- 添加播放/暂停、倒退和前进按钮 -->
+            <div class="video-controls">
+                <button id="rewind"><img src="back.png" alt="倒退"></button>
+                <button id="playPause"><img src="start.png" alt="播放/暂停"></button>
+                <button id="forward"><img src="go.png" alt="前进"></button>
+            </div>
         </div>
     </div>
 

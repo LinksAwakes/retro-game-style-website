@@ -87,7 +87,7 @@ video {
     width: 50%;
     height: 100%; /* 这将确保覆盖层覆盖整个视频区域 */
     pointer-events: none; /* 这将确保可以点击或交互覆盖层下面的视频 */
-    z-index: 9999; /* 足够高以确保它在顶层 */
+    z-index: 9998; /* 足够高以确保它在顶层 */
     object-fit: contain;
 }
 
@@ -134,7 +134,7 @@ video {
     height: 50px; /* 按钮高度 */
     border: 10px solid black;
     margin: 8px; /*按钮间距*/
-    cursor: pointer;
+    cursor: url('m2.png'), pointer;
 }
 
 .color-button:active {
@@ -165,7 +165,80 @@ video {
     animation: fadeOut 1s ease-out forwards;
 }
 
+/* 视频控制按钮的样式 */
+.video-controls {
+    position: absolute; /* 固定位置 */
+    top: 55%;
+    right: 400px;
+    transform: translateY(-50%); /* 垂直居中对齐 */ 
+    flex-direction: column; /* 让按钮垂直排列 */
+    display: flex;
+    align-items: center; /* 垂直居中 */
+    margin-top: 10px; /* 与视频间距 */
+    z-index: 5000;
+}
 
+/* 控制按钮样式 */
+.video-controls button {
+    background: none; /* 无背景 */
+    border: none; /* 无边框 */
+    cursor: pointer; /* 鼠标悬停时显示手形光标 */
+    padding: 3px; /* 内边距 */
+    margin: 5px 0; /* 左右间距 */
+    cursor: url('m2.png'), pointer;
+}
+
+/* 控制按钮中的图标样式 */
+.video-controls button img {
+    width: 64px; /* 图标宽度 */
+    height: 64px; /* 图标高度 */
+}
+
+/* 调整图标的大小 */
+/* 如果需要不同的尺寸，可以修改 width 和 height 的值 */
+
+.video-controls button:active {
+    transform: scale(0.9); /* 按钮被按下时缩小 */
+}
+
+.custom-buttons {
+    position: fixed;
+    top: 30px;
+    right: 50px;
+    z-index: 1000; /* 确保控制按钮在内容上层 */
+}
+
+.custom-buttons button {
+    background: none;
+    border: none;
+    padding: 3px; /* 内边距 */
+    cursor: pointer;
+    margin-left: 5px;
+    cursor: url('m2.png'), pointer;
+}
+
+.custom-buttons img {
+    width: 50px;
+    height: 50px;
+}
+
+.custom-buttons button:active {
+    transform: scale(0.9); /* 按钮被按下时缩小 */
+}
+
+#helpText {
+    position: fixed;
+    top: 100px;
+    right: 100px;
+    font-family: 'Bone-Regular';
+    font-size: 25px;
+    width: 250px; /* 设置文本框的宽度 */
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0);
+    padding: 10px;
+    border: 5px solid #000000;
+    display: none;
+}
   
   /* 以16:9的宽高比为例 */
 .container {
