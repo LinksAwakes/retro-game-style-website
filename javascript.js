@@ -127,30 +127,191 @@ document.addEventListener('DOMContentLoaded', (event) => {
             "It's a nice day, isn't it?",
             "What idiot made this page? What a piece of shit!",
             "You can try clicking the close button on my right, it will run amok~",
-            "The author admitted she couldn't spot the close button either, probably because her coding was pretty bad."
+            "The author admitted she couldn't spot the close button either, probably because her coding was pretty bad.",
+            "Stop clicking on me! I'm gonna get worn out from all this play!",
+            " :P ",
+            "; )",
+            "🤔",
+            "❔ <---- I's me~",
+            "🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔",
+            "The author says she's really into this 🤔 emoji, so she's gonna stuff a few more of them into the webpage 🤔",
+            "Feels like being an assistant is exhausting. Must be that assistant-tiredness kicking in.",
+            "If you take a moment to listen to what I'm saying, you'll realize you just take a moment.",
+            "Fine, as long as you're happy, whatever."
+
 
             // 添加更多帮助句子
         ];
-        helpText.textContent = sentences[Math.floor(Math.random() * sentences.length)];
-        helpText.style.display = 'block'; // 显示帮助文本
+        // 清除现有的隐藏文本定时器
+        clearTimeout(window.hideTimer);
 
-        // 设置定时器，在 8 秒后隐藏文本
-        setTimeout(() => {
-            helpText.style.display = 'none';
-        }, 6000); // 8000 毫秒后执行
+        if (window.isAnimating) {
+            // 如果当前正在播放动画，则立即完成当前句子的显示
+            clearInterval(window.letterTimer);
+            helpText.textContent = window.currentSentence;
+            window.isAnimating = false;
+        } else {
+            // 随机选择一个新句子并开始播放动画
+            window.currentSentence = sentences[Math.floor(Math.random() * sentences.length)];
+    
+            let currentText = '';
+            let letterIndex = 0;
+            clearInterval(window.letterTimer);
+            helpText.textContent = '';
+            helpText.style.display = 'block';
+            window.isAnimating = true;
+    
+            window.letterTimer = setInterval(() => {
+                currentText += window.currentSentence.charAt(letterIndex);
+                helpText.textContent = currentText;
+                letterIndex++;
+    
+                if (letterIndex === window.currentSentence.length) {
+                    clearInterval(window.letterTimer);
+                    window.isAnimating = false;
+    
+                    // 设置定时器，8秒后隐藏文本
+                    window.hideTimer = setTimeout(() => {
+                        helpText.style.display = 'none';
+                    }, 8000);
+                }
+            }, 50);
+        }
     });
     
-    document.getElementById('closeButton').addEventListener('click', () => {
-        const button = document.getElementById('closeButton');
-        const maxX = window.innerWidth - button.clientWidth;
-        const maxY = window.innerHeight - button.clientHeight;
-        const randomX = Math.random() * maxX;
-        const randomY = Math.random() * maxY;
-        button.style.position = 'absolute';
-        button.style.left = randomX + 'px';
-        button.style.top = randomY + 'px';
-    });
+    // 初始化变量
+    window.isAnimating = false;
+    window.currentSentence = '';
+
+        let inactivityTimer;
+        const helpText = document.getElementById('helpText');
     
+        function showInactivityMessage() {
+            const inactivityMessages = [
+                "Anyone still around? Hellooo? Knock-knock!",
+                "So bored over here. Anyone wanna hang out with me?...",
+                "(Tweeting like a little bird) Chirp chirp!~",
+                "(Imitating a puppy's bark) Woof woof!! Awooo~"
+            ];
+            helpText.textContent = inactivityMessages[Math.floor(Math.random() * inactivityMessages.length)];
+            helpText.style.display = 'block';
+
+            setTimeout(() => {
+                helpText.style.display = 'none';
+            }, 8000);
+        }
+
+        
+    
+        function resetInactivityTimer() {
+            clearTimeout(inactivityTimer);
+            inactivityTimer = setTimeout(showInactivityMessage, 30000); // 设置 10 秒无操作后显示消息
+        }
+    
+        // 为整个文档添加事件监听器以重置定时器
+        document.addEventListener('click', resetInactivityTimer);
+        document.addEventListener('keypress', resetInactivityTimer);
+    
+        // 初始化定时器
+        resetInactivityTimer();
+
+        const closeButton = document.getElementById('closeButton');
+        let x = 0, y = 0; // 初始位置
+        let dx = -2, dy = 2; // 初始移动速度和方向
+        let clickCount = 0; // 点击次数
+        let movingInterval; // 移动定时器
+        
+        function moveButton() {
+            const maxX = window.innerWidth - closeButton.clientWidth;
+            const maxY = window.innerHeight - closeButton.clientHeight;
+        
+            x += dx;
+            y += dy;
+        
+            // 检测并反转方向
+            if (x <= 0 || x >= maxX) dx = -dx;
+            if (y <= 0 || y >= maxY) dy = -dy;
+        
+            // 更新按钮位置
+            closeButton.style.left = x + 'px';
+            closeButton.style.top = y + 'px';
+        }
+        
+        closeButton.addEventListener('click', () => {
+            clickCount++;
+        
+            if (clickCount === 1) {
+                // 第一次点击，开始移动
+                movingInterval = setInterval(moveButton, 20); // 调整时间间隔以改变速度
+            } else if (clickCount === 2) {
+                // 第二次点击，加速
+                clearInterval(movingInterval);
+                movingInterval = setInterval(moveButton, 10);
+            } else {
+                // 第三次点击，消失
+                const button = document.getElementById('closeButton');
+                const boomGif = document.getElementById('boomGif');
+                const audio = new Audio('explore sound.wav');
+                const gifDuration = 1000; // 假设 GIF 播放时长为 3000 毫秒（3秒）
+        
+                // 获取按钮当前的位置
+                const buttonRect = button.getBoundingClientRect();
+        
+                // 隐藏按钮
+                button.style.display = 'none';
+        
+                // 显示并定位 GIF 到按钮的位置
+                boomGif.style.display = 'block';
+                boomGif.style.left = buttonRect.left - 70 + 'px';
+                boomGif.style.top = buttonRect.top + 'px';
+        
+                // 播放音效
+                audio.play();
+        
+                // 添加事件监听器以便在 GIF 播放结束后隐藏它
+                setTimeout(() => {
+                    boomGif.style.display = 'none'; // 或者 boomGif.remove();
+                }, gifDuration);
+            }
+        });
+            
+        
+        // 初始化按钮位置
+        closeButton.style.position = 'absolute';
+        closeButton.style.left = x + 'px';
+        closeButton.style.top = y + 'px';
+
+        // 创建音频对象
+        const clickSound = new Audio('click.wav');
+
+        // 定义一个函数来设置自定义光标
+        function setCustomCursor() {
+            document.body.style.cursor = 'url(m1.png), auto';
+        }
+
+        // 初始化时设置自定义光标
+        setCustomCursor();
+
+        // 为整个文档添加点击事件监听器
+        document.addEventListener('click', () => {
+            clickSound.play(); // 播放点击音效
+
+            // 在播放音效时再次设置自定义光标
+            setCustomCursor();
+        });
+
+        // 确保音效播放完后光标不会改变
+        clickSound.onended = () => {
+            setCustomCursor();
+        };
+
+
+        
+    
+    
+
+    
+        
 });
 
 

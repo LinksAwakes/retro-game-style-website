@@ -204,23 +204,43 @@ video {
 .custom-buttons {
     position: fixed;
     top: 30px;
-    right: 50px;
+    right: 120px;
     z-index: 1000; /* 确保控制按钮在内容上层 */
 }
 
-.custom-buttons button {
+#helpButton, #closeButton {
     background: none;
     border: none;
     padding: 3px; /* 内边距 */
     cursor: pointer;
     margin-left: 5px;
+    position: absolute; /* 使每个按钮都可以单独定位 */
     cursor: url('m2.png'), pointer;
 }
 
-.custom-buttons img {
+#helpButton img, #closeButton img {
     width: 50px;
     height: 50px;
 }
+
+#helpButton {
+    top: 0; /* 例如，放在容器的顶部 */
+    right: 0; /* 放在容器的右侧 */
+}
+
+#closeButton {
+    top: 0px; /* 例如，放在帮助按钮下方一定距离 */
+    right: 40; /* 也放在容器的右侧 */
+}
+
+#boomGif {
+    position: fixed;
+    display: none;
+    width: 200px;
+    height: 200px;
+    left: 50px;
+}
+
 
 .custom-buttons button:active {
     transform: scale(0.9); /* 按钮被按下时缩小 */
@@ -234,7 +254,7 @@ video {
     font-size: 25px;
     width: 250px; /* 设置文本框的宽度 */
     z-index: 1000;
-    background-color: rgba(255, 255, 255, 0);
+    background-color: rgba(255, 255, 255, 0.277);
     padding: 10px;
     border: 5px solid #000000;
     display: none;
