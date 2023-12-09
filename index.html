@@ -40,11 +40,11 @@
         </div>
         <div id="helpText"></div> <!-- 帮助文本显示区域 -->
         <div class="video-container">
+            <img src="kuang_heibai.png" alt="Overlay" class="video-overlay">
             <video id="myVideo" autoplay loop muted playsinline>
                 <source src="MEEEEEEEEEEEEEEEE.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
-            <img src="kuang_heibai.png" alt="Overlay" class="video-overlay">
             <!-- 视频控制按钮 -->
             <!-- 添加播放/暂停、倒退和前进按钮 -->
             <div class="video-controls">
@@ -55,6 +55,15 @@
         </div>
         <script src="path/to/your/script.js"></script>
     </div>
+    <audio id="typeSound" src="explore sound.wav" preload="auto"></audio>
+    <div id="popup" class="popup" style="display: none;">
+        <img src="window.png" alt="Window Image" class="popup-image">
+        <div class="popup-buttons">
+            <button id="okButton">OK, fine</button>
+            <button id="greatButton">Great</button>
+        </div>
+    </div>
+    
 
     <script src="javascript.js"></script>
 </body>

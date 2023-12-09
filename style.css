@@ -13,6 +13,7 @@ a:hover {
 
 html, body {
     height: 100%;
+    width: 100%;
     margin: 0;
     padding: 0;
     background-color: #000000; /* Gray background to create the border effect */
@@ -62,32 +63,41 @@ header h1 {
     animation: brightness 1s infinite alternate;
 }
 
+/*视频容器*/
 .video-container {
-    width: 536px; /* Set the width of the video container to match video resolution */
-    height: 480px; /* Set the height of the video container to match video resolution */
-    border: 10px solid #000000;
+    width: 34%; /* Set the width of the video container to match video resolution */
+    aspect-ratio: 536/480;
+    border: 3px solid #000000;
     margin-top: 50px; /* Space between the color stripes and the video */
+    position: relative; /* 使内部元素能够相对于此容器定位 */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 video {
+    position: absolute; /* 绝对定位 */
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
 }
 
 .video-wrapper {
     position: relative; /* 使子元素可以相对于此元素绝对定位 */
-    width: 536px; /* 应与视频大小匹配 */
-    height: 480px; /* 应与视频大小匹配 */
+    width: 100%; /* 应与视频大小匹配 */
+    height: 100%;
 }
-
+/*视频覆盖层*/
 .video-overlay {
     position: absolute;
-    top: 148px;
-    left: 25%;
-    width: 50%;
-    height: 100%; /* 这将确保覆盖层覆盖整个视频区域 */
+    top: -20%;
+    right: -33%;
+    width: 167%; /* 使图片宽度与容器宽度一致 */
+    display: block; /* 防止底部出现滚动条 */
+    height: 180%; /* 这将确保覆盖层覆盖整个视频区域 */
     pointer-events: none; /* 这将确保可以点击或交互覆盖层下面的视频 */
-    z-index: 9998; /* 足够高以确保它在顶层 */
+    z-index: 9000; /* 足够高以确保它在顶层 */
     object-fit: contain;
 }
 
@@ -117,7 +127,7 @@ video {
 }
 
 #date {
-    left: 170px;
+    left: 140px;
     bottom: 30px; /* 保持或减少这个值以降低日期元素的位置 */
 }
 
@@ -168,14 +178,14 @@ video {
 /* 视频控制按钮的样式 */
 .video-controls {
     position: absolute; /* 固定位置 */
-    top: 55%;
-    right: 400px;
+    top: 50%;
+    left: 117%;
     transform: translateY(-50%); /* 垂直居中对齐 */ 
     flex-direction: column; /* 让按钮垂直排列 */
     display: flex;
     align-items: center; /* 垂直居中 */
     margin-top: 10px; /* 与视频间距 */
-    z-index: 5000;
+    z-index: 9999;
 }
 
 /* 控制按钮样式 */
@@ -254,11 +264,53 @@ video {
     font-size: 25px;
     width: 250px; /* 设置文本框的宽度 */
     z-index: 1000;
-    background-color: rgba(255, 255, 255, 0.277);
+    background-color: rgba(255, 255, 255, 0.14);
     padding: 10px;
     border: 5px solid #000000;
     display: none;
 }
+
+.trail { 
+    position: absolute;
+    height: 52px; /* 根据您的图像大小进行调整 */
+    width: 36px; /* 根据您的图像大小进行调整 */
+    pointer-events: none; /* 防止拖尾干扰鼠标点击 */
+    z-index: 9999; /* 确保拖尾显示在其他元素上方 */
+}
+
+
+body, button {
+    font-family: 'Bone-Regular';
+}
+
+.popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    display: none; /* 初始隐藏 */
+    text-align: center;
+}
+
+.popup-image {
+    width: 100%; /* 根据需要调整 */
+    height: auto;
+    margin: auto;
+}
+
+.popup-buttons {
+    margin-top: -40px;
+}
+
+.popup-buttons button {
+    margin: 0 10px;
+    background-color: #f0f0f000; /* 背景颜色 */
+    padding: 10px 20px; /* 内边距 */
+    cursor: url('m2.png'), pointer;
+}
+
+
   
   /* 以16:9的宽高比为例 */
 .container {

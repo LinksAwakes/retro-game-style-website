@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             " :P ",
             "; )",
             "🤔",
-            "❔ <---- I's me~",
+            "❔",
             "🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔",
             "The author says she's really into this 🤔 emoji, so she's gonna stuff a few more of them into the webpage 🤔",
             "Feels like being an assistant is exhausting. Must be that assistant-tiredness kicking in.",
@@ -306,6 +306,58 @@ document.addEventListener('DOMContentLoaded', (event) => {
         };
 
 
+        // 创建一个音频对象
+        const typingSound = new Audio('explore sound.wav');
+
+        // 为整个文档添加键盘按下事件监听器
+        document.addEventListener('keydown', () => {
+            // 如果音效正在播放，则重置音效
+            if (!typingSound.paused) {
+                typingSound.pause();
+                typingSound.currentTime = 0;
+            }
+            
+            // 播放打字音效
+            typingSound.play();
+        });
+
+        document.addEventListener('mousemove', (event) => {
+            const trail = document.createElement('img');
+            trail.src = 'm1.png'; // 您的图像路径
+            trail.className = 'trail';
+            trail.style.left = `${event.pageX - 1}px`; // 调整位置使其居中于鼠标
+            trail.style.top = `${event.pageY - 1}px`;
+            document.body.appendChild(trail);
+        
+            // 设置定时器以移除拖尾元素
+            setTimeout(() => {
+                document.body.removeChild(trail);
+            }, 100); // 拖尾持续时间，可调整
+        });
+        
+
+            const popup = document.getElementById('popup');
+            const audio = new Audio('ding.wav');
+            let isPopupShown = false; // 用于跟踪弹出层是否已经显示过
+        
+            function showPopup() {
+                if (!isPopupShown) {
+                    popup.style.display = 'block';
+                    audio.play();
+                    isPopupShown = true; // 标记弹出层已显示
+                }
+            }
+        
+            function closePopup() {
+                popup.style.display = 'none';
+            }
+        
+            // 为整个文档添加点击事件监听器，首次点击时显示弹出层
+            document.addEventListener('click', showPopup, { once: true });
+        
+            // 为关闭按钮添加点击事件监听器
+            document.getElementById('okButton').addEventListener('click', closePopup);
+            document.getElementById('greatButton').addEventListener('click', closePopup);
         
     
     
