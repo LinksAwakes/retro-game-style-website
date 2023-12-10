@@ -18,6 +18,7 @@ html, body {
     padding: 0;
     background-color: #000000; /* Gray background to create the border effect */
     box-sizing: border-box;
+    display: flex;
 }
 
 .body-wrapper {
@@ -275,39 +276,43 @@ video {
     height: 52px; /* 根据您的图像大小进行调整 */
     width: 36px; /* 根据您的图像大小进行调整 */
     pointer-events: none; /* 防止拖尾干扰鼠标点击 */
-    z-index: 9999; /* 确保拖尾显示在其他元素上方 */
+    z-index: 99999; /* 确保拖尾显示在其他元素上方 */
 }
 
-
-body, button {
-    font-family: 'Bone-Regular';
-}
 
 .popup {
-    position: absolute;
+    display: none; /* 初始隐藏 */
+    position: fixed; /* 固定位置 */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 9999;
-    display: none; /* 初始隐藏 */
     text-align: center;
+    z-index: 99998;
 }
 
 .popup-image {
-    width: 100%; /* 根据需要调整 */
+    max-width: 70%; /* 根据需要调整宽度 */
     height: auto;
-    margin: auto;
+    
 }
 
 .popup-buttons {
-    margin-top: -40px;
+    margin-top: -100px; /* 按钮与图片之间的间隔 */
+    display: flex;
+    justify-content: center; /* 水平居中按钮 */
+    position: absolute; /* 绝对定位 */
 }
 
-.popup-buttons button {
-    margin: 0 10px;
-    background-color: #f0f0f000; /* 背景颜色 */
-    padding: 10px 20px; /* 内边距 */
+.popup-buttons img {
+    cursor: pointer;
+    margin: 0 10px; /* 按钮之间的间隔 */
+    width: 30%;
+    height: auto;
     cursor: url('m2.png'), pointer;
+}
+
+.popup-buttons button:active {
+    transform: scale(0.9); /* 按钮被按下时缩小 */
 }
 
 

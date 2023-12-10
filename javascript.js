@@ -335,29 +335,31 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }, 100); // 拖尾持续时间，可调整
         });
         
-
             const popup = document.getElementById('popup');
             const audio = new Audio('ding.wav');
-            let isPopupShown = false; // 用于跟踪弹出层是否已经显示过
         
+            // 显示弹出层和播放音效的函数
             function showPopup() {
-                if (!isPopupShown) {
-                    popup.style.display = 'block';
-                    audio.play();
-                    isPopupShown = true; // 标记弹出层已显示
-                }
+                popup.style.display = 'block';
+                audio.play();
+        
+                // 移除事件监听器以确保只显示一次
+                document.removeEventListener('click', showPopup);
             }
         
+            // 为整个文档添加点击事件监听器，首次点击时显示弹出层
+            document.addEventListener('click', showPopup);
+        
+            // 关闭弹出层的函数
             function closePopup() {
                 popup.style.display = 'none';
             }
         
-            // 为整个文档添加点击事件监听器，首次点击时显示弹出层
-            document.addEventListener('click', showPopup, { once: true });
-        
-            // 为关闭按钮添加点击事件监听器
+            // 为两个图片按钮添加点击事件监听器
             document.getElementById('okButton').addEventListener('click', closePopup);
             document.getElementById('greatButton').addEventListener('click', closePopup);
+        
+        
         
     
     
