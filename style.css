@@ -3,6 +3,20 @@
     src: url('Bone-Regular.ttf') format('truetype');
 }
 
+html, body, body * {
+    user-select: none;
+    /* 应用模糊滤镜 */
+    filter: blur(0.7px);
+
+    /* 设置图像渲染模式为像素化 */
+    image-rendering: pixelated;
+
+    /* 调整图像缩放以加强像素化效果 */
+    transform: scale(1);
+    transform-origin: center;
+}
+
+
 html {
     cursor: url('m1.png'), auto;
 }
