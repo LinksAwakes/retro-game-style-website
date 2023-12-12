@@ -334,6 +334,26 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 document.body.removeChild(trail);
             }, 100); // 拖尾持续时间，可调整
         });
+
+
+            const popup = document.getElementById('popup');
+            const dingSound = document.getElementById('dingSound');
+        
+            function showPopup() {
+                popup.style.display = 'block';
+                dingSound.play();
+                document.removeEventListener('click', showPopup); // 移除监听器，确保只显示一次
+            }
+        
+            function closePopup() {
+                popup.style.display = 'none';
+            }
+        
+            document.addEventListener('click', showPopup, { once: true });
+            document.getElementById('okButton').addEventListener('click', closePopup);
+            document.getElementById('greatButton').addEventListener('click', closePopup);
+        
+        
         
 
     

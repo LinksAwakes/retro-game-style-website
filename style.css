@@ -5,17 +5,7 @@
 
 html, body, body * {
     user-select: none;
-    /* 应用模糊滤镜 */
-    filter: blur(0.7px);
-
-    /* 设置图像渲染模式为像素化 */
-    image-rendering: pixelated;
-
-    /* 调整图像缩放以加强像素化效果 */
-    transform: scale(1);
-    transform-origin: center;
 }
-
 
 html {
     cursor: url('m1.png'), auto;
@@ -116,16 +106,16 @@ video {
     object-fit: contain;
 }
 
-  @keyframes brightness {
+@keyframes brightness {
     0%, 100% {
       filter: brightness(30%); /* 正常亮度 */
     }
     50% {
       filter: brightness(150%); /* 增加亮度 */
     }
-  }
+}
 
-  #time, #date {
+#time, #date {
     position: absolute;
     color: rgb(0, 0, 0); /* 设置文本颜色 */
     font-size: 45px; /* 设置字体大小 */
@@ -137,12 +127,12 @@ video {
 }
 
 #time {
-    left: 235px;
+    left: 60px;
     bottom: 90px; /* 增加这个值以提高时间元素的位置 */
 }
 
 #date {
-    left: 140px;
+    left: 60px;
     bottom: 30px; /* 保持或减少这个值以降低日期元素的位置 */
 }
 
@@ -150,7 +140,7 @@ video {
     /* 按钮容器样式，根据需要进行调整 */
     position: absolute;
     bottom: 50px;
-    right: 80px;
+    right: 70px;
     z-index: 9000;
 }
 
@@ -264,6 +254,7 @@ video {
     width: 200px;
     height: 200px;
     left: 50px;
+    
 }
 
 
@@ -311,7 +302,7 @@ video {
 }
 
 .popup-buttons {
-    margin-top: -100px; /* 按钮与图片之间的间隔 */
+    margin-top: -85px; /* 按钮与图片之间的间隔 */
     display: flex;
     justify-content: center; /* 水平居中按钮 */
     position: absolute; /* 绝对定位 */
