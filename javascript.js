@@ -2,6 +2,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const header = document.querySelector('header h1');
     const actionsLog = document.getElementById('user-actions-log');
     const maxLogs = 5; // 最大记录数
+    let forwardClickCount = 0;
+    let rewindClickCount = 0;
+    let isAlternateVideoPlaying = false;
+
 
     function changeColor() {
         const headerColors = ['red', 'green', 'blue', 'yellow', 'purple'];
@@ -93,8 +97,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     const video = document.getElementById('myVideo');
+    const videoSource = document.getElementById('videoSource');
+    const originalVideoSrc = videoSource.getAttribute('src'); // 获取并保存原始视频源
+    console.log('Original video src:', originalVideoSrc);
     const playPauseBtn = document.getElementById('playPause');
     const playImg = playPauseBtn.querySelector('img');
+    // 为初始视频设置 ended 事件监听器
+    video.addEventListener('ended', onVideoEnded);
 
     // 给播放/暂停按钮添加点击事件监听
     playPauseBtn.addEventListener('click', () => {
@@ -108,15 +117,103 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     });
 
+    function onVideoEnded() {
+        if (isAlternateVideoPlaying) {
+            // 恢复原视频源并继续播放
+            videoSource.setAttribute('src', originalVideoSrc);
+            video.load();
+            video.play();
+    
+            // 重置状态
+            forwardClickCount = 0;
+            isAlternateVideoPlaying = false;
+    
+            // 如果原视频需要循环播放，可以在这里重新设置 loop 属性
+            video.setAttribute('loop', '');
+        }
+    }
+    
+
     // 给倒退按钮添加点击事件监听
     document.getElementById('rewind').addEventListener('click', () => {
         video.currentTime -= 10;  // 视频倒退 10 秒
+
+        if (isAlternateVideoPlaying) {
+            // 当特殊视频正在播放时，不执行任何操作
+            return;
+        }
+
+        rewindClickCount++;
+        if (rewindClickCount < 10) {
+            video.currentTime -= 10;  // 视频倒退 10 秒
+        } else {
+            // 切换到特殊视频 "paint can.mp4"
+            videoSource.setAttribute('src', 'paint can.mp4');
+            video.load();
+            video.play();
+            isAlternateVideoPlaying = true;
+
+            // 移除 loop 属性以防循环播放
+            video.removeAttribute('loop');
+        }
     });
+
+    video.addEventListener('ended', () => {
+        if (isAlternateVideoPlaying) {
+            // 恢复原视频源并继续播放
+            videoSource.setAttribute('src', originalVideoSrc);
+            video.load();
+            video.play();
+
+            // 重置状态
+            rewindClickCount = 0;
+            isAlternateVideoPlaying = false;
+
+            // 如果原视频需要循环播放，可以在这里重新设置 loop 属性
+            video.setAttribute('loop', '');
+        }
+    });
+
+    
 
     // 给前进按钮添加点击事件监听
     document.getElementById('forward').addEventListener('click', () => {
-        video.currentTime += 10;  // 视频前进 10 秒
+        if (isAlternateVideoPlaying) {
+            // 当特殊视频正在播放时，不执行任何操作
+            return;
+        }
+
+        forwardClickCount++;
+        if (forwardClickCount < 10) {
+            video.currentTime += 10;  // 视频前进 10 秒
+        } else {
+            // 切换到特殊视频 "help me.mp4"
+            videoSource.setAttribute('src', 'help me.mp4');
+            video.load();
+            video.play();
+            isAlternateVideoPlaying = true;
+
+            // 移除 loop 属性以防循环播放
+            video.removeAttribute('loop');
+        }
     });
+
+    video.addEventListener('ended', () => {
+        if (isAlternateVideoPlaying) {
+            // 恢复原视频源并继续播放
+            videoSource.setAttribute('src', originalVideoSrc);
+            video.load();
+            video.play();
+
+            // 重置状态
+            forwardClickCount = 0;
+            isAlternateVideoPlaying = false;
+
+            // 如果原视频需要循环播放，可以在这里重新设置 loop 属性
+            video.setAttribute('loop', '');
+        }
+    });
+
 
     document.getElementById('helpButton').addEventListener('click', () => {
         const helpText = document.getElementById('helpText');
@@ -137,7 +234,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
             "The author says she's really into this 🤔 emoji, so she's gonna stuff a few more of them into the webpage 🤔",
             "Feels like being an assistant is exhausting. Must be that assistant-tiredness kicking in.",
             "If you take a moment to listen to what I'm saying, you'll realize you just take a moment.",
-            "Fine, as long as you're happy, whatever."
+            "Fine, as long as you're happy, whatever.",
+            "If there's an issue with the web page, remember to refresh it a few times, okay?"
 
 
             // 添加更多帮助句子
@@ -191,7 +289,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 "Anyone still around? Hellooo? Knock-knock!",
                 "So bored over here. Anyone wanna hang out with me?...",
                 "(Tweeting like a little bird) Chirp chirp!~",
-                "(Imitating a puppy's bark) Woof woof!! Awooo~"
+                "(Imitating a puppy's bark) Woof woof!! Awooo~",
+                "If there's an issue with the web page, remember to refresh it a few times, okay?～"
             ];
             helpText.textContent = inactivityMessages[Math.floor(Math.random() * inactivityMessages.length)];
             helpText.style.display = 'block';

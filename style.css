@@ -71,7 +71,7 @@ header h1 {
 /*视频容器*/
 .video-container {
     width: 34%; /* Set the width of the video container to match video resolution */
-    aspect-ratio: 536/480;
+    aspect-ratio: 480/480;
     border: 3px solid #000000;
     margin-top: 50px; /* Space between the color stripes and the video */
     position: relative; /* 使内部元素能够相对于此容器定位 */
